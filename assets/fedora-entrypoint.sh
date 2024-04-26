@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "Changing ownership of /data as $(whoami)"
-chown -R jetty:jetty /data
-echo "Downgrading privileges and resuming"
+# echo "Changing ownership of /data as $(whoami)"
+# chown -R jetty:jetty /data
+# echo "Downgrading privileges and resuming"
 
 for MEM_FILE in memory.max memory/memory.limit_in_bytes memory/memory.memsw.limit_in_bytes memory/memory.kmem.limit_in_bytes; do
   echo "Checking for /sys/fs/cgroup/$MEM_FILE..."
@@ -36,4 +36,4 @@ fi
 
 MODESHAPE_CONFIG=${MODESHAPE_CONFIG:-classpath:/config/${DEFAULT_CONFIG}/repository.json}
 export JAVA_OPTIONS="${JAVA_OPTIONS} -Dfcrepo.home=/data -Dfcrepo.modeshape.configuration=${MODESHAPE_CONFIG}"
-su -s /bin/bash -c "exec /docker-entrypoint.sh $@" jetty
+/bin/bash -c "exec /docker-entrypoint.sh $@"

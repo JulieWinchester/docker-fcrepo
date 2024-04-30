@@ -19,6 +19,9 @@ ARG         FCREPO_VERSION
 ENV         FCREPO_VERSION=4.7.5
 COPY        --chown=jetty:0 --from=warfile /build/* ${JETTY_BASE}/fedora/
 
+# Add auth files
+COPY        --chown=jetty:0 examples/auth/. ${JETTY_BASE}
+
 # For K8s OpenShift, ensure all files and directories are readable and executable by group 0
 RUN chgrp -R 0 ${JETTY_BASE} && \
     chmod -R g+rwX ${JETTY_BASE}

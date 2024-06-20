@@ -35,5 +35,5 @@ if [[ "$FCREPO_VERSION" < "4.7.0" ]]; then
 fi
 
 MODESHAPE_CONFIG=${MODESHAPE_CONFIG:-classpath:/config/${DEFAULT_CONFIG}/repository.json}
-export JAVA_OPTIONS="${JAVA_OPTIONS} -Dfcrepo.home=/data -Dfcrepo.modeshape.configuration=${MODESHAPE_CONFIG}"
+export JAVA_OPTIONS="-Dfcrepo.home=/data ${JAVA_OPTIONS} -Dfcrepo.modeshape.configuration=${MODESHAPE_CONFIG}"
 /bin/bash -c "exec /docker-entrypoint.sh $@"

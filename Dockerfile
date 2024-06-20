@@ -12,6 +12,7 @@ USER        root
 RUN         mkdir -p /data ${JETTY_BASE}/etc ${JETTY_BASE}/modules
 ADD         assets/fedora-entrypoint.sh /
 ADD         --chown=jetty:0 assets/fedora.xml ${JETTY_BASE}/webapps/fedora.xml
+ADD         --chown=jetty:0 assets/repository.json ${JETTY_BASE}/webapps/repository.json
 EXPOSE      8080 61613 61616
 ENTRYPOINT  "/fedora-entrypoint.sh"
 
